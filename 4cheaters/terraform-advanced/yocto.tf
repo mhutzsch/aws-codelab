@@ -1,18 +1,3 @@
-data "aws_ami" "latest" {
-  most_recent = true
-  owners = ["amazon"]
-
-  filter {
-    name = "name"
-    values = ["amzn-ami-*-x86_64-gp2"]
-  }
-
-  filter {
-    name = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
 module "yocto" {
   source = "./modules/service"
 
@@ -21,7 +6,7 @@ module "yocto" {
   profile = "${var.profile}"
   public_subnet_ids = ["${module.vpc.public_subnets}"]
   sshkeyname = "some-keypair"
-  team_name = "k2tf"
+  team_name = "some-team"
   vpc_id = "${module.vpc.vpc_id}"
   service_name = "yocto"
 }
